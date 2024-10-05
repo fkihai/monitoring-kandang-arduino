@@ -1,4 +1,7 @@
 
+// #define development
+#define production
+
 void setup() {
   Serial.begin(9600);
   Serial3.begin(9600);
@@ -14,6 +17,13 @@ void setup() {
 }
 
 void loop() {
+
+#ifdef development
+  // debugSensorSHT();
+  debugSensorGas();
+#endif
+
+#ifdef production
   unsigned long currentMillis = millis();
   if (currentMillis - previousMillis >= interval) {
     readSensorGas();
@@ -22,6 +32,8 @@ void loop() {
     previousMillis = currentMillis;
   }
   debugSerialEsp();
+#endif
+
 }
 
 

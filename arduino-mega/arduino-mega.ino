@@ -30,7 +30,7 @@
 
 Adafruit_SHT31 sht[4];
 
-const int channel[] = { 5, 4, 3, 2 };
+const int channel[] = { 3, 4, 5, 7 };
 const int NO2_PINS[] = { NO2_P1, NO2_P2, NO2_P3, NO2_P4, NO2_P5, NO2_P6, NO2_P7, NO2_P8 };
 const int NH3_PINS[] = { NH3_P1, NH3_P2, NH3_P3, NH3_P4, NH3_P5, NH3_P6, NH3_P7, NH3_P8 };
 
@@ -113,3 +113,7 @@ public:
 };
 
 SensorData sensorData;
+
+
+
+
