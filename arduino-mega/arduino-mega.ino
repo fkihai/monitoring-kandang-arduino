@@ -26,6 +26,8 @@
 #define NO2_P8 A14
 #define NH3_P8 A15
 
+#define RELAY 7
+#define BUTTON 11
 #define TCA9548A_ADDR 0x70
 
 Adafruit_SHT31 sht[4];
@@ -36,7 +38,9 @@ const int NH3_PINS[] = { NH3_P1, NH3_P2, NH3_P3, NH3_P4, NH3_P5, NH3_P6, NH3_P7,
 
 
 unsigned long previousMillis = 0;
-const long interval = 10000;
+const long interval = 60000;
+
+bool overThreshold = false;
 
 /* Initialize var sensor */
 class SensorData {

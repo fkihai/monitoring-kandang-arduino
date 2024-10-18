@@ -5,6 +5,8 @@
 void setup() {
   Serial.begin(9600);
   Serial3.begin(9600);
+  pinMode(RELAY,OUTPUT);
+  pinMode(BUTTON,INPUT_PULLUP);
   Wire.begin();
   for (int i = 0; i < 4; i++) {
     tca9548a_select(channel[i]);
@@ -20,7 +22,8 @@ void loop() {
 
 #ifdef development
   // debugSensorSHT();
-  debugSensorGas();
+  // debugSensorGas();
+  testRelay();
 #endif
 
 #ifdef production
@@ -31,6 +34,7 @@ void loop() {
     sendDataToEsp();
     previousMillis = currentMillis;
   }
+  fanAction();
   debugSerialEsp();
 #endif
 

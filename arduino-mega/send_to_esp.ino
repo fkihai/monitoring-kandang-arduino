@@ -3,7 +3,7 @@ void sendDataToEsp() {
 
   for (int i = 0; i < 8; i++) {
     doc[String("NH3_Sensor") + (i + 1)] = sensorData.getNH3(i);
-    doc[String("NO2_Sensor") + (i + 1)] = sensorData.getNO2(i);
+    doc[String("NO2_") + (i + 1)] = sensorData.getNO2(i);
   }
 
   for (int i = 0; i < 4; i++) {

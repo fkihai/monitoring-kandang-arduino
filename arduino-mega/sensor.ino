@@ -1,9 +1,29 @@
 void readSensorGas() {
+  overThreshold = false;
   for (int i = 0; i < 8; i++) {
-    sensorData.setNO2(i, analogRead(NO2_PINS[i]));
-    sensorData.setNH3(i, analogRead(NH3_PINS[i]));
+    int no2Raw = analogRead(NO2_PINS[i]);
+    int nh3Raw = analogRead(NH3_PINS[i]);
+
+    float no2Mapped = (no2Raw * (10.0 - 0.05) / 1023.0) + 0.05;
+    int nh3Mapped = map(nh3Raw, 0, 1023, 0, 500);
+
+    sensorData.setNO2(i, no2Mapped);
+    sensorData.setNH3(i, nh3Mapped);
+
+    if (nh3Mapped > 400) {
+      overThreshold = true;
+    }
   }
 }
+
+void fanAction() {
+  if (overThreshold) {
+    digitalWrite(RELAY, HIGH);  // Set output HIGH
+  } else {
+    digitalWrite(RELAY, LOW);   // Set output LOW
+  }
+}
+
 
 void readSensorSHT() {
   for (int i = 0; i < 4; i++) {
@@ -40,3 +60,15 @@ void debugSensorSHT() {
     delay(1000);
   }
 }
+
+void testRelay() {
+  String data = Serial.readStringUntil('\n');
+  if (data == "a"  ) {
+    digitalWrite(RELAY, HIGH);
+    Serial.println("HIDUP");
+  } if (data == "b") {
+    digitalWrite(RELAY, LOW);
+    Serial.println("MATI");
+  }
+}
+
