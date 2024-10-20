@@ -16,6 +16,7 @@ void setup() {
       Serial.println(i + 1);
     }
   }
+  Serial.println("Sensor oke");
 }
 
 void loop() {

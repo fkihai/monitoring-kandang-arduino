@@ -10,7 +10,7 @@ void readSensorGas() {
     sensorData.setNO2(i, no2Mapped);
     sensorData.setNH3(i, nh3Mapped);
 
-    if (nh3Mapped > 400) {
+    if (nh3Mapped > 200) {
       overThreshold = true;
     }
   }
